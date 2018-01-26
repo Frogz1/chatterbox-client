@@ -46,6 +46,8 @@ describe('chatterbox', function() {
         app.send(message);
         ajaxOptions = typeof $.ajax.args[0][0] === 'object' ? $.ajax.args[0][0] : $.ajax.args[0][1];
         var result = ajaxOptions.data;
+        console.log(result);
+
         expect(result).to.deep.equal(message);
         done();
       });
@@ -119,8 +121,10 @@ describe('chatterbox', function() {
 
         app.init();
 
-        $('#send .submit').trigger('submit');
-        expect(app.handleSubmit.calledOnce).to.be.true;
+        $('#send .submit').trigger('submit', function () {
+          expect(app.handleSubmit.calledOnce).to.be.true;
+        });
+        
 
         app.handleSubmit.restore();
       });
