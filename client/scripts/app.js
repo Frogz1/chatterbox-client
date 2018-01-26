@@ -6,7 +6,8 @@ class App {
   }
   
   init() {
-    
+    $('.username').on('click', () => this.handleUsernameClick(event));
+    $('#send .submit').on('submit', () => this.handleSubmit(event));
   }
   
   send(message) {
@@ -31,23 +32,28 @@ class App {
   }
   
   clearMessages() {
-    
+    $('#chats').html('');
   }
   
-  renderMessage() {
-    
+  renderMessage(message) {
+    let html = `<div class="message">
+      <div class="username">${message.username}</div>
+      <div class="text">${message.text}</div>
+    </div>`;
+    $('#chats').append(html);
   }
   
-  renderRoom() {
-    
+  renderRoom(roomname) {
+    let room = `<div class="room">${roomname}</div>`;
+    $('#roomSelect').append(room); 
   }
   
-  handleUsernameClick() {
-    
+  handleUsernameClick(event) {
+    console.log(event);
   }
   
-  handleSubmit() {
-    
+  handleSubmit(event) {
+    console.log(event);
   }
   
   
